@@ -1,0 +1,33 @@
+<h1>More Information</h1>
+
+<table>
+	<thead>
+		<tr>
+			<th>Post ID</th>
+			<th>Title</th>
+			<th>Content</th>
+			<th>Reaction ID</th>
+			<th>Reaction</th>
+		</tr>
+	</thead>
+
+	<tbody>
+		<!-- @comments is passed from controller to view -->
+		<% @reactions.each do |reaction| %>
+			<tr>
+				<td><%= reaction.post.id %></td>
+				<td><%= reaction.post.title %></td>
+				<td><%= reaction.post.body %></td>
+				<td><%= reaction.id %></td>
+				<td><%= reaction.comment %></td>
+
+				<td><%= link_to 'Show Reaction', reaction %></td>
+				<td><%= link_to 'Edit Reaction', edit_reaction_path(reaction) %></td>
+				<td><%= link_to 'Destroy Reaction', reaction, method: :delete, data: { confirm: 'Are you sure to delete'} %></td>
+				<td><%= link_to 'Show Post', reaction.post %></td>
+				<td><%= link_to 'Edit Post', edit_post_path(reaction.post) %></td>
+				<td><%= link_to 'Destroy Post', reaction.post, method: :delete, data: { confirm: 'Are you sure to delete?'} %></td>
+			</tr>
+		<% end %>
+	</tbody>
+</table>
